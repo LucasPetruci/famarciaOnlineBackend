@@ -11,7 +11,13 @@ class ProductController extends Controller
 {
     public function index(): JsonResponse
     {
-        $products = Product::paginate(15);
+        $search = request()->query('search');
+
+        $products = Product::when($search, function ($query, $search) {
+            $query->where('name', 'like', "%{$search}%");
+        })
+        ->paginate(15);
+
         return response()->json($products);
     }
 
