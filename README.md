@@ -2,26 +2,54 @@ Estrutura baseado em: https://docs.docker.com/guides/frameworks/laravel/producti
 
 ## Como Rodar
 
-1. Inicie os containers:
+### Pré-requisitos
+
+- Docker e Docker Compose instalados
+- Git instalado
+
+### Passo a Passo
+
+1. **Copie o arquivo de exemplo de variáveis de ambiente:**
 
    ```bash
-   docker compose up
+   cp .env.example .env
    ```
-2. Acesse o container de workspace:
+2. **Configure as variáveis de ambiente no arquivo `.env`:**
+
+   Edite o arquivo `.env` e configure apenas as seguintes variáveis (as demais já têm valores padrão):
+
+   - **APP_KEY**: Deixe vazio por enquanto, será gerado automaticamente no passo 6
+   - **DB_PASSWORD**: Configure uma senha para o banco de dados
+3. **Inicie os containers:**
+
+   ```bash
+   docker compose up --build
+   ```
+4. **Acesse o container de workspace:**
 
    ```bash
    docker exec -it farmaciaonline-workspace bash
    ```
-3. Instale as dependências do Composer:
+5. **Instale as dependências do Composer:**
 
    ```bash
    composer install
    ```
-4. Execute as migrações:
+6. **Gere a chave da aplicação:**
+
+   ```bash
+   php artisan key:generate
+   ```
+7. **Execute as migrações:**
 
    ```bash
    php artisan migrate
    ```
+
+### Acessando a Aplicação
+
+- **Backend API**: http://localhost:8000
+- **Frontend Angular**: http://localhost:4200
 
 ## Funcionalidades do Backend
 
@@ -29,29 +57,24 @@ Estrutura baseado em: https://docs.docker.com/guides/frameworks/laravel/producti
 
     - Validação: nome, preço e tipo obrigatórios
     - Mensagens de erro personalizadas em inglês
-
 2. [X] **Listar produtos com paginação** - `GET /api/products`
 
     - Paginação de 15 itens por página
     - Retorna metadados de paginação (total, per_page, current_page, etc.)
-
 3. [X] **Atualizar produtos** - `PUT/PATCH /api/products/{id}`
 
     - Validação com campos opcionais (usando `sometimes`)
     - Route Model Binding para buscar produto automaticamente
-
 4. [X] **Buscar produto por nome** - `GET /api/products?search=nome`
 
     - Busca parcial (LIKE) no campo `name`
     - Funciona com paginação
     - Usa `when()` para aplicar filtro condicionalmente
-
 5. [X] **Autenticação de usuário**
 
     - Criar usuário
     - Login e Logout
     - Proteger rotas com middleware de autenticação
-
 6. [X] **Filtros e ordenação na listagem**
 
     - Filtrar por tipo: `GET /api/products?type=medication`

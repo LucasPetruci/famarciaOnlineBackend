@@ -81,9 +81,29 @@ services:
     tty: true
     stdin_open: true
 
+  farmaciaonline-frontend:
+    build:
+      context: ../farmaciaOnlineFrontend
+      dockerfile: Dockerfile
+    container_name: farmaciaonline-frontend
+    restart: unless-stopped
+    ports:
+      - "4200:4200"
+    volumes:
+      - ../farmaciaOnlineFrontend:/app
+      - farmaciaonline-frontend-node_modules:/app/node_modules
+    networks:
+      - farmaciaonline
+    develop:
+      watch:
+        - action: sync
+          path: ../farmaciaOnlineFrontend
+          target: /app
+
 networks:
   farmaciaonline:
     driver: bridge
 
 volumes:
   farmaciaonline-data:
+  farmaciaonline-frontend-node_modules:
