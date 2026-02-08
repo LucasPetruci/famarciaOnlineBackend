@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\IndexProductRequest;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
@@ -9,14 +10,21 @@ use Illuminate\Http\JsonResponse;
 
 class ProductController extends Controller
 {
-    public function index(): JsonResponse
+    public function index(IndexProductRequest $request): JsonResponse
     {
-        $search = request()->query('search');
-
-        $products = Product::when($search, function ($query, $search) {
-            $query->where('name', 'like', "%{$search}%");
-        })
-        ->paginate(15);
+        $products = Product::query()
+            ->when($request->filled('search'), function ($query) use ($request) {
+                $query->where('name', 'like', "%{$request->search}%");
+            })
+            ->when($request->filled('type'), function ($query) use ($request) {
+                $query->where('type', $request->type);
+            })
+            ->when($request->filled('sort_by'), function ($query) use ($request) {
+                $query->orderBy($request->sort_by, $request->sort_order ?? 'asc');
+            }, function ($query) {
+                $query->orderBy('id', 'asc');
+            })
+            ->paginate(15);
 
         return response()->json($products);
     }
