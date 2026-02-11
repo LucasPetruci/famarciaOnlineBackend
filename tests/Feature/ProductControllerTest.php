@@ -42,4 +42,31 @@ class ProductControllerTest extends TestCase
             'total',
         ]);
     }
+
+    /**
+     * @test
+     * test endpoint store creates product
+     */
+    public function test_store_creates_product(): void
+    {
+        $user = User::factory()->create();
+        Sanctum::actingAs($user);
+
+        $productData = [
+            'name' => 'Paracetamol',
+            'price' => 11.90,
+            'type' => 'medication',
+        ];
+
+        $response = $this->postJson('/api/products', $productData);
+
+        $response->assertStatus(201);
+        $expectedInResponse = [
+            'name' => $productData['name'],
+            'type' => $productData['type'],
+            'price' => number_format($productData['price'], 2, '.', ''),
+        ];
+        $response->assertJsonFragment($expectedInResponse);
+        $this->assertDatabaseHas('products', $productData);
+    }
 }
