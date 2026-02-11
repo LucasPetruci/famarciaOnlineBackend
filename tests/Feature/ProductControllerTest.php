@@ -15,6 +15,7 @@ class ProductControllerTest extends TestCase
     /**
      * @test
      * test endpoint index returns 401 when unauthenticated
+     * should return 401
      */
     public function test_index_returns_401_when_unauthenticated(): void
     {
@@ -26,6 +27,7 @@ class ProductControllerTest extends TestCase
     /**
      * @test
      * test endpoint index returns paginated products for authenticated user
+     * should return 200 and paginated products
      */
     public function test_index_returns_paginated_products_for_authenticated_user(): void
     {
@@ -45,9 +47,10 @@ class ProductControllerTest extends TestCase
 
     /**
      * @test
-     * test endpoint store creates product
+     * test endpoint store product
+     * should return 201 and create product in database
      */
-    public function test_store_creates_product(): void
+    public function test_store_product_succeeds(): void
     {
         $user = User::factory()->create();
         Sanctum::actingAs($user);
@@ -68,5 +71,38 @@ class ProductControllerTest extends TestCase
         ];
         $response->assertJsonFragment($expectedInResponse);
         $this->assertDatabaseHas('products', $productData);
+    }
+
+    /**
+     * @test
+     * test endpoint update product
+     * should return 200 and update product in database
+     */
+    public function test_update_product_succeeds(): void
+    {
+        $user = User::factory()->create();
+        Sanctum::actingAs($user);
+        $product = Product::create([
+            'name' => 'Old Product',
+            'price' => 10.00,
+            'type' => 'others',
+        ]);
+
+        $updateData = [
+            'name' => 'Updated Product',
+            'price' => 15.50,
+            'type' => 'medication',
+        ];
+
+        $response = $this->putJson("/api/products/{$product->id}", $updateData);
+
+        $response->assertStatus(200);
+        $expectedInResponse = [
+            'name' => $updateData['name'],
+            'type' => $updateData['type'],
+            'price' => number_format($updateData['price'], 2, '.', ''),
+        ];
+        $response->assertJsonFragment($expectedInResponse);
+        $this->assertDatabaseHas('products', array_merge(['id' => $product->id], $updateData));
     }
 }
