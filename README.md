@@ -7,6 +7,32 @@ Estrutura baseado em: https://docs.docker.com/guides/frameworks/laravel/producti
 - Docker e Docker Compose instalados
 - Git instalado
 
+### Organização das pastas
+
+Os dois repositórios precisam estar na **mesma pasta**. Crie um diretório (por exemplo `farmaciaOnline`) e clone os projetos nesta ordem:
+
+1. **Clone o backend:**
+
+   ```bash
+   git clone https://github.com/LucasPetruci/farmaciaOnlineBackend
+   ```
+
+2. **Clone o frontend na mesma pasta:**
+
+   ```bash
+   git clone https://github.com/LucasPetruci/farmaciaOnlineFrontend
+   ```
+
+A estrutura deve ficar assim:
+
+```
+farmaciaOnline/
+├── farmaciaOnlineBackend/
+└── farmaciaOnlineFrontend/
+```
+
+Em seguida, entre na pasta do backend (`cd farmaciaOnlineBackend`) e siga o passo a passo abaixo.
+
 ### Passo a Passo
 
 1. **Copie o arquivo de exemplo de variáveis de ambiente:**
@@ -50,6 +76,10 @@ Estrutura baseado em: https://docs.docker.com/guides/frameworks/laravel/producti
 
 - **Backend API**: http://localhost:8000
 - **Frontend Angular**: http://localhost:4200
+
+### Documentação das rotas (Insomnia)
+
+Você pode consultar e testar todas as rotas da API importando a coleção do [Insomnia](https://insomnia.rest/) que está no repositório. Basta importar o arquivo `Insomnia_farmacia_online.yaml` no Insomnia ( **Application** → **Import/Export** → **Import Data** → **From File** ) e usar as requisições prontas para produtos, autenticação etc.
 
 ## Funcionalidades do Backend
 

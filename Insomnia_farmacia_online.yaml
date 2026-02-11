@@ -1,0 +1,551 @@
+type: collection.insomnia.rest/5.0
+name: farmaciaOnline
+meta:
+  id: wrk_1dd0de7466ac4e9e9bfeb7335f7da139
+  created: 1770322430084
+  modified: 1770322430084
+  description: ""
+collection:
+  - name: Products
+    meta:
+      id: fld_bab7b481da5c4814a91f2604d8a7494f
+      created: 1770488134585
+      modified: 1770573452981
+      sortKey: -1770488134585
+      description: ""
+    children:
+      - url: "{{ _.url }}/products"
+        name: createProduct
+        meta:
+          id: req_ce67f97e47f6400598635f9c01b099f7
+          created: 1770420528872
+          modified: 1770762290147
+          isPrivate: false
+          description: ""
+          sortKey: -1770488150754
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name":"Epocler",
+            	"price":15.90,
+            	"type":"vitamin"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            id: pair_82dcc8af6aa742118b0c8321b94953fb
+            disabled: false
+          - name: User-Agent
+            value: insomnia/12.0.0
+            id: pair_feaabafbd0784b0286c4e58698020c17
+          - id: pair_343d38b7799c491a882928715384e79c
+            name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - id: pair_427541fe9fc04c7dbf01f666b64266ca
+            name: Authorization
+            value: Bearer {{ _.token }}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.url }}/products"
+        name: listProducts
+        meta:
+          id: req_f5372f2ef6fa498eb34a02077004d85c
+          created: 1770488178270
+          modified: 1770767419247
+          isPrivate: false
+          description: ""
+          sortKey: -1770068206108.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+            id: pair_feaabafbd0784b0286c4e58698020c17
+          - id: pair_343d38b7799c491a882928715384e79c
+            name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - id: pair_4ee46edc3d614a94beccc7d769eb9fe1
+            name: Authorization
+            value: Bearer {{ _.token }}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.url }}/products?page=2"
+        name: listProductsPagination
+        meta:
+          id: req_429f68653120423b9b13a2ac68d0b8be
+          created: 1770488282726
+          modified: 1770767424886
+          isPrivate: false
+          description: ""
+          sortKey: -1769858233785.75
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+            id: pair_feaabafbd0784b0286c4e58698020c17
+          - id: pair_343d38b7799c491a882928715384e79c
+            name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - id: pair_43aeee5e1b8d447981a5f26acbf80dee
+            name: Authorization
+            value: Bearer {{ _.token }}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.url }}/products/1"
+        name: updateProduct
+        meta:
+          id: req_4fe11ce158464a1b8ecf50ba7fcba52a
+          created: 1770489383552
+          modified: 1770765201494
+          isPrivate: false
+          description: ""
+          sortKey: -1770278178431.25
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name":"Paracetamol",
+            	"price":11.90,
+            	"type":"medication"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            id: pair_82dcc8af6aa742118b0c8321b94953fb
+            disabled: false
+          - name: User-Agent
+            value: insomnia/12.0.0
+            id: pair_feaabafbd0784b0286c4e58698020c17
+          - id: pair_343d38b7799c491a882928715384e79c
+            name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - id: pair_943d8d7b128d4e76b71179830d8f0188
+            name: Authorization
+            value: Bearer {{ _.token }}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.url }}/products/1"
+        name: deleteProduct
+        meta:
+          id: req_3b6cd79af3864e4f9524eb6713dc36d5
+          created: 1770489889829
+          modified: 1770500629365
+          isPrivate: false
+          description: ""
+          sortKey: -1770173192269.875
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+            id: pair_feaabafbd0784b0286c4e58698020c17
+          - id: pair_343d38b7799c491a882928715384e79c
+            name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.url }}/products?search=para"
+        name: searchByName
+        meta:
+          id: req_642bb7fe92a349658ebfb99190f723a8
+          created: 1770491404783
+          modified: 1770767403025
+          isPrivate: false
+          description: ""
+          sortKey: -1769963219947.125
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+            id: pair_feaabafbd0784b0286c4e58698020c17
+          - id: pair_343d38b7799c491a882928715384e79c
+            name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - id: pair_5501bd1e29724e62bdf32273d82d0d65
+            name: Authorization
+            value: Bearer {{ _.token }}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.url }}/products?type=vitamin"
+        name: listProducts - filterByType
+        meta:
+          id: req_c736266611d0421783ec412adea7c8ec
+          created: 1770572151715
+          modified: 1770767416458
+          isPrivate: false
+          description: ""
+          sortKey: -1770015713027.8125
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+            id: pair_feaabafbd0784b0286c4e58698020c17
+          - id: pair_343d38b7799c491a882928715384e79c
+            name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - id: pair_4ee46edc3d614a94beccc7d769eb9fe1
+            name: Authorization
+            value: Bearer {{ _.token }}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.url }}/products?search=epocler"
+        name: listProducts - searchByName
+        meta:
+          id: req_6c122785d86e433fa2d2066ab69d99d7
+          created: 1770572284460
+          modified: 1770767413944
+          isPrivate: false
+          description: ""
+          sortKey: -1769989466487.4688
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+            id: pair_feaabafbd0784b0286c4e58698020c17
+          - id: pair_343d38b7799c491a882928715384e79c
+            name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - id: pair_4ee46edc3d614a94beccc7d769eb9fe1
+            name: Authorization
+            value: Bearer {{ _.token }}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.url }}/products?search=epocler&type=vitamin"
+        name: listProducts - searchByName and filterByType
+        meta:
+          id: req_c6633ed65d1f481d8ad69ac0448dc757
+          created: 1770573335920
+          modified: 1770767411542
+          isPrivate: false
+          description: ""
+          sortKey: -1769976343217.2969
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+            id: pair_feaabafbd0784b0286c4e58698020c17
+          - id: pair_343d38b7799c491a882928715384e79c
+            name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - id: pair_4ee46edc3d614a94beccc7d769eb9fe1
+            name: Authorization
+            value: Bearer {{ _.token }}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.url }}/products?sort_by=price&sort_order=asc"
+        name: listProducts - sort
+        meta:
+          id: req_f1e8439ae665494d8583e6916157441f
+          created: 1770577237408
+          modified: 1770771729457
+          isPrivate: false
+          description: ""
+          sortKey: -1769969781582.211
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+            id: pair_feaabafbd0784b0286c4e58698020c17
+          - id: pair_343d38b7799c491a882928715384e79c
+            name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - id: pair_4ee46edc3d614a94beccc7d769eb9fe1
+            name: Authorization
+            value: Bearer {{ _.token }}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.url }}/products?per_page=15"
+        name: listProductsPerPage
+        meta:
+          id: req_01e0f19605d1436c8799bff359b70ffa
+          created: 1770767434651
+          modified: 1770767509887
+          isPrivate: false
+          description: ""
+          sortKey: -1769753247624.375
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+            id: pair_feaabafbd0784b0286c4e58698020c17
+          - id: pair_343d38b7799c491a882928715384e79c
+            name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - id: pair_43aeee5e1b8d447981a5f26acbf80dee
+            name: Authorization
+            value: Bearer {{ _.token }}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Auth
+    meta:
+      id: fld_c9459579924f424fad39f65679ad5d68
+      created: 1770493412365
+      modified: 1770495519137
+      sortKey: -1770493412365
+      description: ""
+    children:
+      - url: "{{ _.url }}/register"
+        name: register
+        meta:
+          id: req_4f69e722c3004ebe92646f5da6346180
+          created: 1770493416203
+          modified: 1770679837413
+          isPrivate: false
+          description: ""
+          sortKey: -1770493416203
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name":"Lucas",
+            	"email":"lucaspetruci100@gmail.com",
+            	"password": "Teste123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            id: pair_82417dca474c4a819097a64a8e05fed5
+          - name: User-Agent
+            value: insomnia/12.0.0
+            id: pair_c761b5fa1df1405483b87b08bcf6b30d
+          - id: pair_0465663272b4418a84a07833330c28fd
+            name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.url }}/login"
+        name: login
+        meta:
+          id: req_0c017bd723d741a189094ec3c32168e9
+          created: 1770493855910
+          modified: 1770643556744
+          isPrivate: false
+          description: ""
+          sortKey: -1770490783478.5
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email":"lucaspetruci100@gmail.com",
+            	"password": "Teste123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            id: pair_4769f9962e7f4572b460f164534016c5
+          - name: User-Agent
+            value: insomnia/12.0.0
+            id: pair_8c82c6fcc21a4282aa308a1e9a932353
+          - id: pair_8f73791a3ba9429d99ce37cf3e87c1fc
+            name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.url }}/logout"
+        name: logout
+        meta:
+          id: req_c7433a02c38e44c48848dbb8de061162
+          created: 1770495525620
+          modified: 1770685301661
+          isPrivate: false
+          description: ""
+          sortKey: -1770489467116.25
+        method: POST
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+            id: pair_8c82c6fcc21a4282aa308a1e9a932353
+          - id: pair_8f73791a3ba9429d99ce37cf3e87c1fc
+            name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - id: pair_8b9b79abe357457aae499c4834b99665
+            name: Authorization
+            value: Bearer {{ _.token }}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_98b3e51835df67fbb4c222fce9a85bc0af3b08dc
+    created: 1770322430088
+    modified: 1770323012536
+  cookies:
+    - key: XSRF-TOKEN
+      value: eyJpdiI6IlhPSkJ3VUgxZVVQcG5KMEtQclA3OUE9PSIsInZhbHVlIjoiRzlzNHEvSmxZTi9KUDZidEppUmhwQ0RQRGtuTFBtYjFnV2VVcXNsR3BPTjIvU0FaMjhhaFBDVkVNL3RIRVFoM1docHRNZC80N0hwZUl5TGN4MVRwQWxwOUtmRnFKZStSZVhnazRueFpKYnU2R3Z1ejcvMUJUc1pMUWlUeWFxeWwiLCJtYWMiOiJmMTdkNjA2YjBlZTAxNGNjNGNlYzVhNTZkZjdkYWQ1ZmUyY2Y3YTFlMTg2YzM4N2Y4YjZmMzI2NGE1ODgxYzBjIiwidGFnIjoiIn0%3D
+      maxAge: 7200
+      domain: localhost
+      path: /
+      hostOnly: true
+      creation: 2026-02-05T20:14:12.444Z
+      lastAccessed: 2026-02-05T20:23:32.536Z
+      sameSite: lax
+      id: d457b9f0-bb5b-4688-a4d2-20455ce316c4
+    - key: laravel-session
+      value: eyJpdiI6IitreUNHSWxJWWZzaFZSTlh5K2grSWc9PSIsInZhbHVlIjoiR0tnNWs5YmRqK1lMSFRiemVDeHVwd0xxQ0Exa3lkVFd4ZnlxZDRRQVozMG43RUlvR1FDSThYck80cnlyWmFRZ2cyRmF2RWw5M3oxV3hPL0o5dUhYcmwraUVudnJmdkF3ZXFYMzRoVWJXaEJYa0xzRVBIejhyNjA1TE9NTFY4WTMiLCJtYWMiOiI0YzE5YWExMTk1NGEzMzIyYWQyMjYyZTFkMjg4MzdhMDEyYjdhN2VjY2E3ZmNlNGNkZjE5ZDUzMThhYWE5M2M1IiwidGFnIjoiIn0%3D
+      maxAge: 7200
+      domain: localhost
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2026-02-05T20:14:12.445Z
+      lastAccessed: 2026-02-05T20:14:12.445Z
+      sameSite: lax
+      id: 4321c128-a9cc-4a5c-9b4f-ad5e1b00016c
+    - key: farmacia-online-session
+      value: eyJpdiI6IlQ0eldiMWp2bktmdUcyMmxBVnpYdmc9PSIsInZhbHVlIjoidHJKM3o4REtzWG0yQ2twbFRXaW5SMDg3Zk9qNExneXMwTWVNaWJkb1hORVkvRXB6Ri9nTjZMYjNhSE4zQjQxcTZFazdPN3FFL2tybnJGSTdrOENwR2ZDbUlyeWNHSVUrOSttTlJpRStBTzkxTWdkc0ZrMCtIaWF3RDMwT3kxYzAiLCJtYWMiOiJhNmE0ZTBjYzAyZGRkNjIwMDAzNGE0ZjZmODdlNGY0MGY2NTZmZDI4YzU5ZWMwZmM0ZDViNjQ5MWU5MGEyZWI5IiwidGFnIjoiIn0%3D
+      maxAge: 7200
+      domain: localhost
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2026-02-05T20:23:32.536Z
+      lastAccessed: 2026-02-05T20:23:32.536Z
+      sameSite: lax
+      id: c30fde84-a799-47f1-aa01-06960d69f15d
+environments:
+  name: Base Environment
+  meta:
+    id: env_98b3e51835df67fbb4c222fce9a85bc0af3b08dc
+    created: 1770322430086
+    modified: 1770570929563
+    isPrivate: false
+  data:
+    url: http://localhost:8000/api
+    token: 1|IMOvpHH1s9pgVuo6FV5rhPqeDdpFAnZBnhedBhe3e770d09a
